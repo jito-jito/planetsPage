@@ -1,0 +1,36 @@
+<header 
+  class="header" 
+>
+  <h1 class="header-title">
+    <a routerLink="/">
+      the planets
+    </a>
+  </h1>
+  
+
+  <div class="mobileMenu">
+    <svg class="mobileMenu-dropdownimg"(click)="toggleMenu()"  xmlns="http://www.w3.org/2000/svg" ><g [ngStyle]="{'fill': openMenu ? '#38384F' : '#FFFFFF'}" fill-rule="evenodd"><path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z"/></g></svg>
+    <nav *ngIf="openMenu" class="mobileMenu-menu">
+      <li class="mobileMenu-menu-item" *ngFor="let category of categories">
+        <div [ngStyle]="{'backgroundColor': getcolor(category.name)}"></div>
+        <a [routerLink]="['/planet/', category.id]" [queryParams]="{category: 'overview'}" (click)="toggleMenu()" >{{ category.name }}</a>
+        <p>></p>
+      </li>
+    </nav>
+  </div>
+
+  <div class="desktopMenu">
+    <ul class="desktopMenu-menu">
+      <li 
+        *ngFor="let category of categories"
+        class="desktopMenu-menu-item" 
+        appColorState
+        [currentCategory]="category.name"
+        [selectedCategory]="selectedCategory"
+        id="desktop-menuLink"
+      >
+        <a [routerLink]="['/planet/', category.id]" [queryParams]="{category: 'overview'}" (click)="toggleMenu()" >{{ category.name }}</a>
+      </li>
+    </ul>
+  </div>
+</header>

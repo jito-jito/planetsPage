@@ -1,0 +1,106 @@
+
+<ul class="mobileCategory-container">
+  <li 
+    *ngFor="let category of categories"
+    class="mobileCategory-link" 
+    appColorState
+    [selectedPlanet]="selectedPlanet"
+    [selectedCategory]="selectedCategory"
+    [currentCategory]=category
+    id="mobile-categoryContainer"
+  >
+    <a 
+      [routerLink]="['.']" 
+      [queryParams]="{category: category}" 
+    >
+    {{ category }}
+    </a>
+  </li>
+</ul>
+
+<article  
+  *ngIf="!loading"
+  @loadingContent
+
+  class="planet fade-in-out" 
+>
+  <div class="planet-imgContainer">
+    <figure 
+      class="planet-img" 
+      *ngIf="!changeDataLoading"
+      @changeContent
+      [ngSwitch]="selectedCategory"
+    >
+      <ng-container *ngSwitchCase="'surface'">
+        <img class="planet-img-planet" [src]="planet.images.planet" alt="">
+        <img class="planet-img-geology" [src]="planet.images.geology" alt="">
+      </ng-container>
+  
+      <img class="planet-img-planet" *ngSwitchCase="'overview'" [src]="planet.images.planet" alt="">
+  
+      <img class="planet-img-internal" *ngSwitchCase="'structure'" [src]="planet.images.internal" alt="">
+    </figure>
+  
+    <figure *ngIf="changeDataLoading" class="loading-planet-img">
+      <div></div>
+    </figure>
+  </div>
+
+  <div class="planet-descirptionContainer">
+    <h1 class="planet-title">{{ planet.name }}</h1>
+    <p 
+      class="planet-content"
+      *ngIf="!changeDataLoading"
+      @changeContent 
+    >
+      {{ selectedData.content }}
+    </p>
+    <p class="loading-planet-description" *ngIf="changeDataLoading">
+  
+    </p>
+    <p class="planet-source">Source : <a [href]="selectedData.source ? selectedData.source : ''">
+      Wikipedia
+      <img src="../../../assets/icon-source.svg" alt="">
+    </a></p>
+  </div>
+
+  <ul class="desktopCategory-container">
+    <li 
+      *ngFor="let category of categories; index as i"
+      
+      class="desktopCategory-link" 
+      appColorState
+      [selectedPlanet]="selectedPlanet"
+      [selectedCategory]="selectedCategory"
+      [currentCategory]=category
+      id="desktop-categoryContainer" 
+    >
+      <a 
+        [routerLink]="['.']" 
+        [queryParams]="{category: category}" 
+      >
+        <span class="desktopCategory-link-number" >0{{ i + 1 }}</span>
+        <span class="desktopCategory-link-name">{{ category }}</span>
+      </a>
+    </li>
+  </ul>
+
+  <article class="planet-cards-container">
+    <section class="planet-cards-item">
+      <p>Rotation time</p>
+      <h1>{{ planet.rotation }}</h1>
+    </section>
+    <section class="planet-cards-item">
+      <p>Revolution time</p>
+      <h1>{{ planet.revolution }}</h1>
+    </section>
+    <section class="planet-cards-item">
+      <p>Radius</p>
+      <h1>{{ planet.radius }}</h1>
+    </section>
+    <section class="planet-cards-item">
+      <p>Average Temp.</p>
+      <h1>{{ planet.temperature }}</h1>
+    </section>
+  </article>
+</article>

@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;400&family=League+Spartan:wght@100;200;300;400;500;700&display=swap');
+
+$background-color1: #070724;
+
+$color-bright: #FFFFFF;
+$color-lightDark: #38384F;
+$color-mercury: #419EBB;
+$color-venus: #EDA249;
+$color-earth: #6f2ed6;
+$color-mars: #D14C32;
+$color-jupiter: #D83A34;
+$color-saturn: #CD5120;
+$color-uranus: #1EC1A2;
+$color-neptune: #2D68F0;
+
+$fontType-main: 'League Spartan', sans-serif;
+$fontType-secondary: 'Antonio', sans-serif;
+$font-size-base: 16px;
+
+$medium-screen: "(min-width: 650px)";
+$large-screen: "(min-width: 1100px)";
+
+html { 
+  font-size: $font-size-base;
+}
+
+body { 
+  margin: 0;
+  background-color: $background-color1;
+  color: $color-bright;
+  font-family: $fontType-main;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+
+// @mixin H1-font-size {
+//   font-size: 3.25rem;
+// }
+
+// @mixin H3-font-size {
+//   font-size: 1.56rem;
+// }
+// @mixin H4-font-size {
+//   font-size: 1.56rem;
+// }
+// @mixin body-font-size {
+//   font-size: 1.56rem;
+// }
+
+@mixin spartan-body {
+  font-family: $fontType-main;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.36px;
+}
+
+@mixin antonio-medium {
+  font-family: $fontType-secondary;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: -1.6px;
+}
+
+@mixin antorio-h2 {
+  @include antonio-medium;
+  font-size: 2.5rem;
+}
+
+@mixin spartan-body {
+  font-family: $fontType-main;
+  font-size: .8rem;
+  font-weight: 200;
+  line-height: 22px;
+}
+

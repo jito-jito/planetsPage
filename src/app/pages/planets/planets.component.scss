@@ -1,0 +1,368 @@
+@import "../../../styles.scss";
+
+:host {
+  position: relative;
+  z-index: 30;
+}
+
+.mobileCategory {
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0 20px;
+    border-bottom: 1px solid $color-lightDark;
+
+  }
+
+  &-link {
+    a {
+      display: block; /* agregar ancho y alto */
+      width: 100%;
+      height: 100%;
+
+      padding-bottom: 20px;
+      font-family: $fontType-main;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 1.93px;
+
+      text-decoration: none;
+      color: $color-lightDark;
+    }
+  }
+}
+.desktopCategory-container {
+  display: none;
+}
+
+.planet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+
+  
+  &-imgContainer {
+    margin: auto;
+  }
+
+  &-img {
+    width: 110px;
+    height: 110px;
+    margin: 50px;
+
+    &-internal, &-planet {
+      width: inherit;
+      height: inherit;
+    }
+
+    &-geology {
+      position: relative;
+      width: 60px;
+      height: 70px;
+      bottom: 30px;
+    }
+  }
+
+  &-title {
+    @include antorio-h2;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  &-content, &-source {
+    @include spartan-body;
+  }
+  &-source {
+    display: flex;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: 500;
+    color: $color-lightDark;
+    a {
+      display: flex;
+      align-items: center;
+      margin-left: 8px;
+      font-weight: 600;
+      color: $color-lightDark;
+
+      img {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &-cards {
+    &-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+      width: 100%;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25px;
+      border: 1px solid $color-lightDark;
+
+      p {
+        font-family: $fontType-main;
+        font-size: .95rem;
+        letter-spacing: .95px;
+        font-weight: 500;
+        color: $color-lightDark;
+      }
+      h1 {
+        font-family: $fontType-secondary;
+        font-size: 1.3rem;
+        letter-spacing: -.73px;
+        font-weight: 100;
+        margin: 20px 0;
+      }
+
+    }
+  }
+}
+
+.loading {
+  &-planet-img {
+    width: 110px;
+    height: 110px;
+    margin: 50px;
+    div {
+      width: inherit;
+      height: inherit;
+    }
+  }
+
+  &-planet-description {
+    width: 100%;
+    min-height: 50px;
+  }
+}
+
+@media ($medium-screen) {
+  .planet {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+    "planetImg planetImg planetImg planetImg"
+    "planetImg planetImg planetImg planetImg"
+    "planetContent planetContent planetCategories planetCategories"
+    "planetCards planetCards planetCards planetCards"
+    ;
+    padding: 0 40px;
+
+    &-imgContainer {
+      grid-area: planetImg;
+    }
+
+    &-img {
+      width: 185px;
+      height: 185px;
+      margin: 90px;
+
+      &-internal, &-planet {
+        width: inherit;
+        height: inherit;
+      }
+
+      &-geology {
+        position: relative;
+        width: 80px;
+        height: 95px;
+        bottom: 35px;
+      }
+    }
+
+
+    &-descirptionContainer {
+      grid-area: planetContent;
+      width: 100%;
+      text-align: left;
+    }
+
+    &-content {
+      margin: 20px 0;
+      line-height: 1.6rem;
+      font-size: 1rem;
+    }
+
+    &-source {
+      justify-content: left;
+    }
+
+    &-cards {
+
+      &-container {
+        grid-area: planetCards;
+        flex-direction: row;
+        column-gap: 15px;
+        margin: 20px 0;
+      }
+
+      &-item {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-grow: 1;
+        row-gap: 10px;
+        padding: 25px;
+
+        p, h1 {
+          margin: 0;
+          text-transform: uppercase;
+        }
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  .mobileCategory {
+    &-container {
+      display: none;
+    }
+  }
+
+  .desktopCategory {
+    &-container {
+      grid-area: planetCategories;
+      display: block;
+      padding: 0 0 0 50px;
+    }
+
+    &-link {
+      // display: flex;
+      // align-items: center;
+      // justify-content: flex-start;
+      height: 50px;
+      margin: 10px 0;
+      border: 1px solid $color-lightDark;
+      list-style: none;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      &-number {
+        margin: 0 25px;
+        letter-spacing: 1.9px;
+        color: $color-lightDark;;
+      }
+      &-name {
+        font-size: .9rem;
+        letter-spacing: 1.9px;
+        color: $color-bright;
+      }
+    }
+  }
+
+  .loading {
+    &-planet-img {
+      width: 185px;
+      height: 185px;
+      margin: 90px;
+     
+      div {
+        width: inherit;
+        height: inherit;
+      }
+    }
+    
+
+    &-planet-description {
+      // width: 100%;
+      min-height: 70px;
+    }
+  }
+}
+
+@media ($large-screen) {
+  .planet {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 60% 20% 20%;
+    grid-template-areas: "planetImg planetImg planetContent planetContent"
+    "planetImg planetImg planetCategories planetCategories"
+    "planetCards planetCards planetCards planetCards";
+    // justify-content: center;
+    // align-content: center;
+    min-height: 80vh;
+    height: 100%;
+    padding: 0 40px;
+
+    &-title {
+      font-size: 4.3rem;
+    }
+
+    &-imgContainer {
+      grid-area: planetImg;
+    }
+
+    &-img {
+      width: 300px;
+      height: 300px;
+      margin: 120px;
+
+      &-internal, &-planet {
+        width: inherit;
+        height: inherit;
+      }
+
+      &-geology {
+        position: relative;
+        width: 80px;
+        height: 95px;
+        bottom: 35px;
+      }
+    }
+
+
+    &-descirptionContainer {
+      grid-area: planetContent;
+      // align-self: flex-end;
+      justify-self: center;
+      width: 400px;
+    }
+
+    
+    &-cards-container {
+      grid-area: planetCards;
+    }
+  }
+  
+  .desktopCategory-container {
+    grid-area: planetCategories;
+    align-self: flex-end;
+    justify-self: center;
+    width: 400px;
+    padding: 0;
+  }
+
+  .loading {
+    &-planet-img {
+      width: 300px;
+      height: 300px;
+      margin: 120px;
+      div {
+        width: inherit;
+        height: inherit;
+      }
+    }
+  
+    &-planet-description {
+      width: 100%;
+      min-height: 50px;
+    }
+  }
+}

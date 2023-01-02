@@ -5,9 +5,23 @@
   <title>PlanetsSite</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./assets/planet-saturn.svg">
 </head>
 <body>
+  <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const starback = new Starback(canvas, {
+        type: 'dot',
+        quantity: 45,
+        direction: 225,
+        backgroundColor: ['#00000000'],
+        randomOpacity: true,
+        starSize: [0.5, 0.7]
+    })
+  </script>
   <app-root></app-root>
 </body>
 </html>
