@@ -13,7 +13,7 @@
     <nav *ngIf="openMenu" class="mobileMenu-menu">
       <li class="mobileMenu-menu-item" *ngFor="let category of categories">
         <div [ngStyle]="{'backgroundColor': getcolor(category.name)}"></div>
-        <a [routerLink]="['/planet/', category.id]" [queryParams]="{category: 'overview'}" (click)="toggleMenu()" >{{ category.name }}</a>
+        <a  [routerLink]="['/planet/', category.id]" [queryParams]="{category: 'overview'}" (click)="toggleMenu()" >{{ category.name }}</a>
         <p>></p>
       </li>
     </nav>
@@ -29,7 +29,7 @@
         [selectedCategory]="selectedCategory"
         id="desktop-menuLink"
       >
-        <a [routerLink]="['/planet/', category.id]" [queryParams]="{category: 'overview'}" (click)="toggleMenu()" >{{ category.name }}</a>
+        <a (click)="onChangePlanet(category.name)" [routerLink]="['/planet/', category.id]" [queryParams]="{category: 'overview'}" (click)="toggleMenu()" >{{ category.name }}</a>
       </li>
     </ul>
   </div>

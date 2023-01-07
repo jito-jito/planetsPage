@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivationEnd, Router } from '@angular/router';
 import { PlanetsCatDTO } from '../../models/planetsCatDTO.model'
+import { filter, map } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   selectedCategory: string = ''
   constructor( 
-    private route: ActivatedRoute,
+    private router: Router,
     private apiService: ApiService
   ) {
 
@@ -25,20 +26,46 @@ export class HeaderComponent implements OnInit {
     this.apiService.getAllCategories().subscribe(categories => {
       this.categories = categories as PlanetsCatDTO[]
     })
-    this.route.paramMap.subscribe(params => {
-      let id = params.get('id') as string
-      if(id) {
-        let currentcategory = this.categories.find(category => category.id === parseInt(id))
 
-        if(currentcategory) {
-          this.selectedCategory = currentcategory.name 
-        }
+    // we can't receive params in a component outside router outlet
+
+    // this.route.paramMap.subscribe(params => {
+    //   let id = params.get('id') as string
+      // if(id) {
+      //   let currentcategory = this.categories.find(category => category.id === parseInt(id))
+
+      //   if(currentcategory) {
+      //     this.selectedCategory = currentcategory.name 
+      //   }
+      // } else {
+      //   console.log('dfgfd')
+      // }
+    // })
+
+    this.router.events
+    .pipe(
+      filter(e => (e instanceof ActivationEnd) && (Object.keys(e.snapshot.params).length > 0)),
+      map(e => e instanceof ActivationEnd ? e.snapshot.params : {})
+    )
+    .subscribe((params)=> {
+      let id = params['id'] as string
+      if(id) {
+          let currentcategory = this.categories.find(category => category.id === parseInt(id))
+
+          if(currentcategory) {
+            this.selectedCategory = currentcategory.name 
+          }
       }
-    })
+    });
   }
 
   toggleMenu() {
     this.openMenu = !this.openMenu
+  }
+
+  onChangePlanet(planetName: string) {
+    this.selectedCategory = planetName
+ 
   }
 
   getcolor(categoryName: string) {

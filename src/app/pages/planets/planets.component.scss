@@ -43,9 +43,9 @@
   text-align: center;
   padding: 0 20px;
 
-  
   &-imgContainer {
     margin: auto;
+    height: 225px;
   }
 
   &-img {
@@ -148,8 +148,10 @@
 @media ($medium-screen) {
   .planet {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(4, 23vw);
+    // grid-template-rows: repeat(4, 20vh);
+    grid-template-rows: minmax(20vh, 190px) minmax(20vh, 190px) minmax(20vh, 150px) minmax(20vh, 180px);
+    // grid-template-rows: auto;
     grid-template-areas:
     "planetImg planetImg planetImg planetImg"
     "planetImg planetImg planetImg planetImg"
@@ -160,6 +162,9 @@
 
     &-imgContainer {
       grid-area: planetImg;
+        margin: auto;
+        height: auto;
+    
     }
 
     &-img {
@@ -272,13 +277,13 @@
       width: 185px;
       height: 185px;
       margin: 90px;
-     
+
       div {
         width: inherit;
         height: inherit;
       }
     }
-    
+
 
     &-planet-description {
       // width: 100%;
@@ -287,18 +292,23 @@
   }
 }
 
-@media ($large-screen) {
+
+
+@mixin planetsLargeScreenStyles {
   .planet {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 60% 20% 20%;
+    // grid-template-rows:  minmax(50vh, 55%) minmax(15vh, 20%) minmax(15vh, 20%);
+    grid-template-rows: minmax(47vh, 345px) minmax(15vh, 190px) minmax(15vh, 150px);
+    // grid-template-rows:  minmax(100%, 50vh) minmax(100%, 15vh) minmax(100%, 15vh);
     grid-template-areas: "planetImg planetImg planetContent planetContent"
     "planetImg planetImg planetCategories planetCategories"
     "planetCards planetCards planetCards planetCards";
+    overflow: hidden;
     // justify-content: center;
     // align-content: center;
     min-height: 80vh;
-    height: 100%;
+    height: auto;
     padding: 0 40px;
 
     &-title {
@@ -335,12 +345,12 @@
       width: 400px;
     }
 
-    
+
     &-cards-container {
       grid-area: planetCards;
     }
   }
-  
+
   .desktopCategory-container {
     grid-area: planetCategories;
     align-self: flex-end;
@@ -359,10 +369,18 @@
         height: inherit;
       }
     }
-  
+
     &-planet-description {
       width: 100%;
       min-height: 50px;
     }
   }
+}
+
+@media ($large-screen) {
+  @include planetsLargeScreenStyles;
+}
+
+@media ($xl-large-screen) {
+  @include planetsLargeScreenStyles;
 }

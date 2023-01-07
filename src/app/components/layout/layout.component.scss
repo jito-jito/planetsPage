@@ -1,7 +1,15 @@
+@import "../../../styles.scss";
+
 :host {
   position: relative;
   z-index: 30;
 }
 main {
   padding-bottom: 30px;
+}
+
+@media ($xl-large-screen) {
+  main {
+    padding: 0;
+  }
 }

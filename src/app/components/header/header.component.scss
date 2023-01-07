@@ -127,7 +127,8 @@
 
 }
 
-@media ($large-screen) {
+
+@mixin headerLargeScreenStyles {
   .header {
     flex-direction: row;
     padding: 0px 40px 0px 40px;
@@ -141,4 +142,11 @@
       padding: 35px 0;
     }
   }
+}
+
+@media ($large-screen) {
+  @include headerLargeScreenStyles();
+}
+@media ($xl-large-screen) {
+  @include headerLargeScreenStyles();
 }

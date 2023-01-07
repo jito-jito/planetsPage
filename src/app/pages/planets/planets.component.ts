@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { animate, state, style, transition, trigger, query, AnimationEvent  } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { animate, style, transition, trigger, query, AnimationEvent  } from '@angular/animations';
 import { Location } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -104,7 +104,6 @@ export class PlanetsComponent implements OnInit {
   loading = true 
   changeDataLoading = false
 
-
   constructor(
     private location: Location,
     private apiService: ApiService,
@@ -121,12 +120,12 @@ export class PlanetsComponent implements OnInit {
       this.loading = true
       const planetId = parseInt(params.get('id') as string)
 
+
       this.apiService.getPlanetById(planetId).subscribe((data) => {
         const planetdata = data as PlanetDTO
         this.planet = planetdata
 
         this.selectedPlanet = this.planet.name
-        
 
         this.route.queryParamMap.subscribe(querys => {
           this.changeDataLoading = true
